@@ -1,0 +1,68 @@
+To get from firebase:
+
+import { collection, getDocs } from "firebase/firestore/lite";
+  const [data, setData] = useState([]);
+
+  const somefn = async () => {
+    const nameCol = collection(firestore, "test");
+    const nameSS = await getDocs(nameCol);
+    const nameList = nameSS.docs.map((doc) => doc.data());
+    setData(nameList);
+  };
+
+  useEffect(() => {
+    somefn();
+  }, []);
+
+   const display = () => {
+    console.log(data);
+    return data.map((d) => <div key={d.id}>{d.name}</div>);
+  };
+
+
+
+Mouse click scanner:
+
+const [show, setShow] = useState(false);
+const [x, setX] = useState(0);
+const [y, setY] = useState(0);
+
+<>
+  <div style={{ height: "10vh" }}></div>
+      <div
+        className="App"
+        style={{
+          backgroundColor: "grey",
+          height: "200vh",
+          position: "relative",
+        }}
+        onClick={(e) => {
+          const rect = e.target.getBoundingClientRect();
+          // e.stopPropagation();
+          setX(e.clientX - rect.left);
+          setY(e.clientY - rect.top);
+          console.log(x, y);
+          setShow(true);
+        }}
+      >
+        {display()}
+        {show === true ? (
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              setShow(false);
+              console.log(x, y);
+            }}
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.1)",
+              height: "60px",
+              width: "60px",
+              position: "absolute",
+              top: `calc(${y}px)`,
+              left: `${x}px`,
+              transform: "translate(-50%, -50%)",
+            }}
+          ></div>
+        ) : null}
+  </div>
+</>
