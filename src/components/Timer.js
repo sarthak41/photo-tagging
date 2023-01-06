@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import "../styles/timer.css";
+import "../styles/other.css";
 
-export default function Timer({ startTime, allNotFound }) {
-  const [minutes, setMinutes] = useState("0".padStart(2, "0"));
-  const [seconds, setSeconds] = useState("0".padStart(2, "0"));
-
+export default function Timer({
+  startTime,
+  allNotFound,
+  minutes,
+  seconds,
+  setMinutes,
+  setSeconds,
+}) {
   useEffect(() => {
     if (allNotFound) {
       const interval = setInterval(() => {
@@ -26,7 +30,7 @@ export default function Timer({ startTime, allNotFound }) {
         clearInterval(interval);
       };
     }
-  }, [minutes, seconds, startTime, allNotFound]);
+  });
 
   return (
     <div className="timer">

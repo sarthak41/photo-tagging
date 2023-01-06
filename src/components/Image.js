@@ -3,12 +3,16 @@ import firestore from "../firebase/firebase";
 import { collection, getDocs } from "firebase/firestore/lite";
 import Click from "./Click";
 import Timer from "./Timer";
+import Alert from "./Alert";
 
 export default function Image({ src, alt, id }) {
   const [locs, setLocs] = useState([]);
   const [foundCount, setFoundCount] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [startTime, setStartTime] = useState();
+
+  const [minutes, setMinutes] = useState("0".padStart(2, "0"));
+  const [seconds, setSeconds] = useState("0".padStart(2, "0"));
 
   const incrFound = () => {
     setFoundCount(foundCount + 1);
@@ -50,7 +54,17 @@ export default function Image({ src, alt, id }) {
         allNotFound={foundCount < locs.length}
         incrFound={incrFound}
       />
-      <Timer startTime={startTime} allNotFound={foundCount < locs.length} />
+      <Timer
+        startTime={startTime}
+        allNotFound={foundCount < locs.length}
+        minutes={minutes}
+        seconds={seconds}
+        setMinutes={setMinutes}
+        setSeconds={setSeconds}
+      />
+      {foundCount >= locs.length && (
+        <Alert minutes={minutes} seconds={seconds} />
+      )}
     </>
     // </div>
   );

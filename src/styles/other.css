@@ -1,0 +1,36 @@
+.timer {
+  position: fixed;
+  top: 12vh;
+  right: 1vw;
+  z-index: 200;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 2rem;
+  padding: 10px 30px;
+  border-radius: 6px;
+}
+
+.alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 200;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 30px;
+  border-radius: 6px;
+
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; */
+
+  transition: 10s ease-in;
+}
+
+.alert h2 {
+  margin: 0;
+  font-size: 3.5rem;
+}
