@@ -1,4 +1,5 @@
-.timer {
+.timer,
+.char-list {
   position: fixed;
   top: 12vh;
   right: 1vw;
@@ -9,6 +10,27 @@
   padding: 10px 30px;
   border-radius: 6px;
 }
+
+.char-list {
+  font-size: 1rem;
+  right: auto;
+  left: 1vw;
+}
+
+.char-list li {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.char-list img {
+  height: 24px;
+  width: 24px;
+  border-radius: 8px;
+}
+
 
 .alert {
   position: fixed;
@@ -21,11 +43,11 @@
   padding: 30px;
   border-radius: 6px;
 
-  /* display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px; */
+  gap: 20px;
 
   transition: 10s ease-in;
 }
@@ -33,4 +55,8 @@
 .alert h2 {
   margin: 0;
   font-size: 3.5rem;
+}
+
+.strikethrough {
+  text-decoration: line-through;
 }

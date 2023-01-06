@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../styles/image.css";
 
 export default function Click({
   child,
@@ -17,35 +18,44 @@ export default function Click({
     return false;
   };
 
+  const setScannerLocation = (e) => {
+    const rect = e.target.getBoundingClientRect();
+    setX(e.clientX - rect.left);
+    setY(e.clientY - rect.top);
+    setShow(true);
+  };
+
+  const checkSelection = (e) => {
+    const character = e.target.textContent;
+    const imgDiv = e.target.parentNode.parentNode.parentNode.parentNode;
+
+    const height = imgDiv.offsetHeight,
+      width = imgDiv.offsetWidth;
+
+    const hper = y / height;
+    const wper = x / width;
+
+    const loc_ind = locs.findIndex((l) => l.character === character);
+
+    if (
+      locs[loc_ind] &&
+      isInside(hper, wper, locs[loc_ind].x, locs[loc_ind].y)
+    ) {
+      locs[loc_ind].found = true;
+      setLocs(locs);
+      incrFound();
+    }
+  };
+
   const displayOptions = () => {
     return (
       <ul style={{ display: "flex", gap: "8px", flexDirection: "column" }}>
         {locs.map((loc) =>
           !loc.found ? (
             <li
+              className="option"
               onClick={(e) => {
-                const character = e.target.textContent;
-                const imgDiv =
-                  e.target.parentNode.parentNode.parentNode.parentNode;
-
-                const height = imgDiv.offsetHeight,
-                  width = imgDiv.offsetWidth;
-
-                const hper = y / height;
-                const wper = x / width;
-
-                const loc_ind = locs.findIndex(
-                  (l) => l.character === character
-                );
-
-                if (
-                  locs[loc_ind] &&
-                  isInside(hper, wper, locs[loc_ind].x, locs[loc_ind].y)
-                ) {
-                  locs[loc_ind].found = true;
-                  setLocs(locs);
-                  incrFound();
-                } else console.log("nope");
+                checkSelection(e);
               }}
             >
               {loc.character}
@@ -64,10 +74,7 @@ export default function Click({
     <div
       className="img after-nav"
       onClick={(e) => {
-        const rect = e.target.getBoundingClientRect();
-        setX(e.clientX - rect.left);
-        setY(e.clientY - rect.top);
-        setShow(true);
+        setScannerLocation(e);
       }}
     >
       {child}
@@ -80,33 +87,19 @@ export default function Click({
               setShow(false);
             }}
             style={{
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
-              border: "1px solid blue",
-              height: "60px",
-              width: "60px",
-              position: "absolute",
               top: `${y}px`,
               left: `${x}px`,
-              zIndex: "100",
-              transform: "translate(-50%, -50%)",
             }}
           ></div>
           <div
+            className="options"
             onClick={(e) => {
               e.stopPropagation();
               setShow(false);
             }}
             style={{
-              backgroundColor: "var(--indigo)",
-              width: "80px",
-              maxHeight: "100%",
-              position: "absolute",
               top: `${y}px`,
               left: `${x}px`,
-              zIndex: "100",
-              transform: "translate(50%, -50%)",
-              color: "white",
-              padding: "20px",
             }}
           >
             {displayOptions()}

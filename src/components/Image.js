@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import firestore from "../firebase/firebase";
+import { firestore } from "../firebase/firebase";
 import { collection, getDocs } from "firebase/firestore/lite";
 import Click from "./Click";
 import Timer from "./Timer";
 import Alert from "./Alert";
+import CharList from "./CharList";
 
 export default function Image({ src, alt, id }) {
   const [locs, setLocs] = useState([]);
@@ -65,6 +66,7 @@ export default function Image({ src, alt, id }) {
       {foundCount >= locs.length && (
         <Alert minutes={minutes} seconds={seconds} />
       )}
+      <CharList locs={locs} />
     </>
     // </div>
   );

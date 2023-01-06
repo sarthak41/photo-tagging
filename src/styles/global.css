@@ -4,7 +4,7 @@
 
 :root {
   --indigo: rgb(13, 61, 86);
-  --indigo-trans: rgba(13, 61, 86, 0.8);
+  --indigo-trans: rgba(13, 61, 86, 0.5);
   --light-blue: rgb(96, 188, 214);
   --light-blue-trans: rgba(96, 188, 214, 0.3);
   --bluish: rgb(18, 135, 168);

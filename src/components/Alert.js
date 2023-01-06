@@ -6,7 +6,8 @@ export default function Alert({ minutes, seconds }) {
   console.log(minutes, seconds);
   return seconds !== "00" || minutes !== "00" ? (
     <div className="alert">
-      <h2>Congratulations!</h2> You finished in {minutes}:{seconds}
+      <h2>Congratulations!</h2> You found all of the characters in {minutes}:
+      {seconds}
     </div>
   ) : null;
 }

@@ -1,0 +1,45 @@
+.scanner {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--indigo);
+  height: 60px;
+  width: 60px;
+  position: absolute;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+}
+
+.options {
+  width: 120px;
+  max-height: 100%;
+  position: absolute;
+  z-index: 100;
+  transform: translate(50%, -50%);
+  color: white;
+
+  display: grid;
+  place-items: center;
+}
+
+.options ul {
+  border-radius: 4px;
+  width: 100%;
+  background-color: var(--indigo);
+  display: grid;
+  place-items: center;
+}
+
+.option {
+  padding: 5px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.option:hover {
+  background-color: var(--bluish);
+  transition: 0.15s;
+}
+
+.option:not(:hover) {
+  transition: 0.15s;
+}

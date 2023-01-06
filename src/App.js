@@ -1,5 +1,6 @@
 import "./App.css";
 import "./styles/global.css";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import firestore from "./firebase/firebase";
 // import { collection, getDocs } from "firebase/firestore/lite";
@@ -12,6 +13,14 @@ import Info from "./components/Info";
 import img1 from "./images/img1.jpg";
 
 function App() {
+  const images = [
+    {
+      id: "img1",
+      src: img1,
+      alt: "Skiing",
+    },
+  ];
+  const [img, setImg] = useState(images[0]);
   return (
     <div>
       <BrowserRouter>
@@ -19,8 +28,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
+            element={<Image src={img1} alt="Skiing" id="img1" />}
             path="/image"
-            element={<Image src={img1} alt={"Skiing"} id="img1" />}
           />
           <Route path="/info" element={<Info />} />
         </Routes>
