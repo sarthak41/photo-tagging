@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-export default function Click({ child, locs, setLocs, allFound }) {
+export default function Click({
+  child,
+  locs,
+  setLocs,
+  allNotFound,
+  incrFound,
+}) {
   const [show, setShow] = useState(false);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
@@ -36,9 +42,9 @@ export default function Click({ child, locs, setLocs, allFound }) {
                   locs[loc_ind] &&
                   isInside(hper, wper, locs[loc_ind].x, locs[loc_ind].y)
                 ) {
-                  console.log("yes");
                   locs[loc_ind].found = true;
                   setLocs(locs);
+                  incrFound();
                 } else console.log("nope");
               }}
             >
@@ -65,7 +71,7 @@ export default function Click({ child, locs, setLocs, allFound }) {
       }}
     >
       {child}
-      {show && !allFound ? (
+      {show && allNotFound ? (
         <div>
           <div
             className="scanner"
