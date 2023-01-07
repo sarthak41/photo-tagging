@@ -12,6 +12,28 @@ export default function Click({
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
 
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertClass, setAlertClass] = useState("");
+  const [alertText, setAlertText] = useState("");
+  const [alertTimeout, setAlertTimeout] = useState();
+
+  const displayAlert = (isSuccess) => {
+    clearTimeout(alertTimeout);
+    setShowAlert(true);
+    if (isSuccess) {
+      setAlertClass("success");
+      setAlertText("You found one!");
+    } else {
+      setAlertClass("failure");
+      setAlertText("Keep searching...");
+    }
+
+    const t = setTimeout(() => {
+      setShowAlert(false);
+    }, 2500);
+    setAlertTimeout(t);
+  };
+
   const isInside = (hper, wper, x, y) => {
     if (Math.abs(hper - y) * 100 <= 3 && Math.abs(wper - x) * 100 <= 3)
       return true;
@@ -44,12 +66,15 @@ export default function Click({
       locs[loc_ind].found = true;
       setLocs(locs);
       incrFound();
+      displayAlert(true);
+    } else {
+      displayAlert(false);
     }
   };
 
   const displayOptions = () => {
     return (
-      <ul style={{ display: "flex", gap: "8px", flexDirection: "column" }}>
+      <ul style={{ display: "flex", flexDirection: "column" }}>
         {locs.map((loc) =>
           !loc.found ? (
             <li
@@ -57,6 +82,7 @@ export default function Click({
               onClick={(e) => {
                 checkSelection(e);
               }}
+              key={loc.character}
             >
               {loc.character}
             </li>
@@ -66,10 +92,6 @@ export default function Click({
     );
   };
 
-  useEffect(() => {
-    console.log("X: ", x, "Y: ", y);
-  }, [x, y]);
-
   return (
     <div
       className="img after-nav"
@@ -78,6 +100,7 @@ export default function Click({
       }}
     >
       {child}
+      {showAlert && <div className={alertClass}>{alertText}</div>}
       {show && allNotFound ? (
         <div>
           <div

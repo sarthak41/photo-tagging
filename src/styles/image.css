@@ -24,21 +24,27 @@
 .options ul {
   border-radius: 4px;
   width: 100%;
-  background-color: var(--indigo);
+  background-color: rgb(30, 30, 30);
   display: grid;
   place-items: center;
 }
 
 .option {
-  padding: 5px;
+  display: grid;
+  place-items: center;
+  padding: 10px 0;
   width: 100%;
 }
 
+.options ul :not(:last-child) {
+  border-bottom: 1px solid rgb(210, 210, 210);
+}
+
 .option:hover {
-  background-color: var(--bluish);
-  transition: 0.15s;
+  background-color: rgb(60, 60, 60);
+  transition: 0.25s;
 }
 
 .option:not(:hover) {
-  transition: 0.15s;
+  transition: 0.25s;
 }

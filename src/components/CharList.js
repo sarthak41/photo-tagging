@@ -6,7 +6,7 @@ export default function CharList({ locs }) {
       <div className="char-list">
         <ul>
           {locs.map((loc) => (
-            <li>
+            <li key={loc.character}>
               <div className={loc.found ? "strikethrough" : null}>
                 {loc.character}
               </div>

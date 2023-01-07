@@ -46,16 +46,26 @@ function App() {
   ];
 
   const [img, setImg] = useState(images[0]);
+  const [levelName, setLevelName] = useState(null);
 
   return (
     <div>
       <BrowserRouter>
-        <Nav />
+        <Nav level={levelName} />
         <Routes>
-          <Route path="/" element={<Home images={images} setImg={setImg} />} />
           <Route
-            element={<Image src={img.src} alt={img.alt} id={img.id} />}
+            path="/"
+            element={
+              <Home
+                images={images}
+                setImg={setImg}
+                setLevelName={setLevelName}
+              />
+            }
+          />
+          <Route
             path="/image"
+            element={<Image src={img.src} alt={img.alt} id={img.id} />}
           />
           <Route path="/info" element={<Info />} />
         </Routes>

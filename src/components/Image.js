@@ -32,7 +32,6 @@ export default function Image({ src, alt, id }) {
         };
       });
 
-      console.log(locations);
       setLocs(locations);
     };
 
