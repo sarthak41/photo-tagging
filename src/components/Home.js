@@ -4,7 +4,7 @@ import Card from "./Card";
 export default function Home({ images, setImg, setLevelName }) {
   useEffect(() => {
     setLevelName(null);
-  }, []);
+  }, [setLevelName]);
 
   return (
     <div className="after-nav home">
