@@ -11,6 +11,10 @@
   border-radius: 6px;
 }
 
+.timer {
+  font-family: monospace;
+}
+
 .char-list {
   font-size: 1rem;
   right: auto;
@@ -21,7 +25,7 @@
   padding: 5px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 8px;
 }
 
@@ -30,7 +34,6 @@
   width: 24px;
   border-radius: 8px;
 }
-
 
 .alert {
   position: fixed;
@@ -57,6 +60,17 @@
   font-size: 3.5rem;
 }
 
+.alert button {
+  padding: 10px;
+  border-radius: 4px;
+  border: none;
+}
+
 .strikethrough {
   text-decoration: line-through;
+}
+
+.card img {
+  height: 100px;
+  width: 100px;
 }

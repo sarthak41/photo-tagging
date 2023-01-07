@@ -11,24 +11,50 @@ import Image from "./components/Image";
 import Nav from "./components/Nav";
 import Info from "./components/Info";
 import img1 from "./images/img1.jpg";
+import img2 from "./images/img2.jpg";
+import img3 from "./images/img3.jpg";
+import img4 from "./images/img4.jpg";
+import img5 from "./images/img5.jpg";
 
 function App() {
   const images = [
     {
       id: "img1",
       src: img1,
-      alt: "Skiing",
+      alt: "Ski Mountain",
+    },
+    {
+      id: "img2",
+      src: img2,
+      alt: "At the Beach",
+    },
+    {
+      id: "img3",
+      src: img3,
+      alt: "Race Track",
+    },
+    {
+      id: "img4",
+      src: img4,
+      alt: "In Hollywood",
+    },
+    {
+      id: "img5",
+      src: img5,
+      alt: "The Moon",
     },
   ];
+
   const [img, setImg] = useState(images[0]);
+
   return (
     <div>
       <BrowserRouter>
         <Nav />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home images={images} setImg={setImg} />} />
           <Route
-            element={<Image src={img1} alt="Skiing" id="img1" />}
+            element={<Image src={img.src} alt={img.alt} id={img.id} />}
             path="/image"
           />
           <Route path="/info" element={<Info />} />

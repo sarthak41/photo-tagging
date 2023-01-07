@@ -43,7 +43,7 @@ export default function Image({ src, alt, id }) {
     setLoaded(true);
   }, [loaded, id]);
 
-  const img = <img src={src} alt={alt} style={{ maxWidth: "100%" }} />;
+  const img = <img src={src} alt={alt} style={{ width: "100%" }} />;
   return (
     // <div>
     <>
